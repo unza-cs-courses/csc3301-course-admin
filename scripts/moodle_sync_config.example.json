@@ -1,0 +1,11 @@
+{
+    "moodle_url": "https://moodle.unza.zm",
+    "moodle_token": "YOUR_MOODLE_API_TOKEN_HERE",
+    "course_shortname": "CSC3301",
+    "course_id": null,
+    "github_token": "YOUR_GITHUB_TOKEN_HERE",
+    "github_classroom_id": 301691,
+    "github_org": "unza-cs-courses",
+    "identifier_field": "email",
+    "output_file": "github_classroom_roster.csv"
+}
