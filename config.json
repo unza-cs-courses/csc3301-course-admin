@@ -1,0 +1,67 @@
+{
+  "course_id": "csc3301",
+  "course_name": "Programming Language Paradigms",
+  "semester": "2026-semester-1",
+  "organization": "unza-cs-courses",
+
+  "assignments": {
+    "labs": [
+      {"id": "lab01-scope-binding", "name": "Scope and Binding", "language": "python", "weight": 0.05},
+      {"id": "lab02-type-systems", "name": "Type Systems", "language": "python", "weight": 0.05},
+      {"id": "lab03-functional-programming", "name": "Functional Programming", "language": "python", "weight": 0.05},
+      {"id": "lab04-oop-design", "name": "OOP Design", "language": "python", "weight": 0.05},
+      {"id": "lab05-logic-programming", "name": "Logic Programming", "language": "prolog", "weight": 0.05},
+      {"id": "lab06-concurrency", "name": "Concurrency", "language": "python", "weight": 0.05}
+    ],
+    "projects": [
+      {"id": "proj01-expression-evaluator", "name": "Expression Evaluator", "language": "python", "weight": 0.10},
+      {"id": "proj02-symbolic-differentiator", "name": "Symbolic Differentiator", "language": "scheme", "weight": 0.10},
+      {"id": "proj03-design-patterns", "name": "Design Patterns", "language": "python", "weight": 0.10},
+      {"id": "proj04-expert-system", "name": "Expert System", "language": "prolog", "weight": 0.10},
+      {"id": "proj05-concurrent-pipeline", "name": "Concurrent Pipeline", "language": "python", "weight": 0.10}
+    ]
+  },
+
+  "grading": {
+    "weights": {
+      "visible_tests": 0.40,
+      "hidden_tests": 0.30,
+      "code_quality": 0.20,
+      "participation": 0.10
+    },
+
+    "plagiarism": {
+      "warning_threshold": 40,
+      "penalty_start_threshold": 50,
+      "severe_threshold": 80,
+      "max_penalty": 0.50
+    },
+
+    "grade_boundaries": {
+      "A+": 90, "A": 85, "A-": 80,
+      "B+": 75, "B": 70, "B-": 65,
+      "C+": 60, "C": 55, "C-": 50,
+      "D+": 45, "D": 40,
+      "F": 0
+    }
+  },
+
+  "variant_generation": {
+    "strategy": "unique",
+    "seed_salt": "csc3301-2026-s1",
+    "num_groups": 10
+  },
+
+  "tools": {
+    "jplag_version": "5.1.0",
+    "python_version": "3.11",
+    "prolog_engine": "swipl",
+    "scheme_implementation": "racket"
+  },
+
+  "lms_integration": {
+    "platform": "moodle",
+    "export_format": "csv",
+    "identifier_field": "student_id"
+  }
+}

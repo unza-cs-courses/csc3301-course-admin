@@ -58,20 +58,60 @@ Upload CSV with columns: `identifier,email`
 
 ```
 csc3301-course-admin/
+├── config.json                     # Course configuration
 ├── scripts/
-│   ├── push_all_repos.sh       # Push all templates to GitHub
-│   ├── clone_submissions.sh    # Clone student submissions
-│   ├── batch_grade.sh          # Run autograder on all repos
-│   ├── run_moss.sh             # MOSS similarity detection
-│   ├── run_jplag.sh            # JPlag similarity detection
-│   └── export_grades.py        # Export to Moodle CSV
+│   ├── push_all_repos.sh           # Push all templates to GitHub
+│   ├── clone_submissions.sh        # Clone student submissions
+│   ├── batch_grade.sh              # Run autograder on all repos
+│   ├── run_moss.sh                 # MOSS similarity detection
+│   ├── run_jplag.sh                # JPlag similarity detection
+│   ├── run_hidden_tests.py         # Variant-aware hidden test runner
+│   ├── grade_calculator.py         # Combine scores into final grades
+│   ├── full_grading_pipeline.py    # Complete grading orchestration
+│   ├── setup_local_environment.sh  # One-time environment setup
+│   └── export_grades.py            # Export to Moodle CSV
 ├── docs/
-│   ├── instructor_guide.md     # Full instructor documentation
-│   ├── student_onboarding.md   # Student setup guide
-│   └── grading_workflow.md     # End-to-end grading process
-└── templates/
-    └── assignment_template.md  # Template for new assignments
+│   ├── instructor_guide.md         # Full instructor documentation
+│   ├── student_onboarding.md       # Student setup guide
+│   ├── grading_workflow.md         # End-to-end grading process
+│   └── VARIANT_REFERENCE.md        # What varies per assignment
+└── README.md
 ```
+
+---
+
+## Related Repositories
+
+| Repository | Purpose |
+|------------|---------|
+| `csc3301-hidden-tests` | Private hidden test repository (instructor only) |
+| `csc3301-lab*` | Lab template repositories |
+| `csc3301-proj*` | Project template repositories |
+
+---
+
+## Full Grading Pipeline
+
+Run complete grading with one command:
+
+```bash
+# First-time setup
+./scripts/setup_local_environment.sh
+
+# Activate environment
+source ~/course-grading/activate.sh
+
+# Run full pipeline
+python scripts/full_grading_pipeline.py --course csc3301 --assignment lab01-scope-binding
+```
+
+This executes:
+1. Clone all student submissions
+2. Run visible tests (extract scores)
+3. Run hidden tests (variant-aware)
+4. Run JPlag plagiarism detection
+5. Calculate weighted final grades
+6. Export LMS-compatible CSV
 
 ---
 
