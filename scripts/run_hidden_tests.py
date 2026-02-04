@@ -106,8 +106,40 @@ class HiddenTestRunner:
                 return json.load(f)
         return {"summary": {"passed": 0, "total": 0}, "error": result.stderr}
 
+    def _check_interpreter(self, cmd: str, name: str, install_instructions: str) -> bool:
+        """Check if an interpreter is installed and provide helpful message if not."""
+        if shutil.which(cmd):
+            return True
+
+        print("=" * 60)
+        print(f"ERROR: {name} is not installed")
+        print("=" * 60)
+        print()
+        print(install_instructions)
+        print()
+        print("After installation, re-run this script.")
+        print("=" * 60)
+        return False
+
     def _run_racket_tests(self, tmpdir: Path) -> Dict:
         """Run Racket tests."""
+        install_msg = """To install Racket:
+
+  Ubuntu/Debian:
+    sudo apt-get install racket
+
+  macOS (Homebrew):
+    brew install racket
+
+  Windows:
+    Download from https://racket-lang.org/download/"""
+
+        if not self._check_interpreter("raco", "Racket", install_msg):
+            return {
+                "summary": {"passed": 0, "total": 0},
+                "error": "Racket not installed - please install to run Scheme tests"
+            }
+
         result = subprocess.run(
             ["raco", "test", "tests/hidden/"],
             cwd=tmpdir,
@@ -129,7 +161,31 @@ class HiddenTestRunner:
 
     def _run_prolog_tests(self, tmpdir: Path) -> Dict:
         """Run Prolog tests."""
-        test_file = list((tmpdir / "tests/hidden").glob("*.pl"))[0]
+        install_msg = """To install SWI-Prolog:
+
+  Ubuntu/Debian:
+    sudo apt-get install swi-prolog
+
+  macOS (Homebrew):
+    brew install swi-prolog
+
+  Windows:
+    Download from https://www.swi-prolog.org/download/stable"""
+
+        if not self._check_interpreter("swipl", "SWI-Prolog", install_msg):
+            return {
+                "summary": {"passed": 0, "total": 0},
+                "error": "SWI-Prolog not installed - please install to run Prolog tests"
+            }
+
+        test_files = list((tmpdir / "tests/hidden").glob("*.pl"))
+        if not test_files:
+            return {
+                "summary": {"passed": 0, "total": 0},
+                "error": "No Prolog test files found"
+            }
+
+        test_file = test_files[0]
 
         result = subprocess.run(
             ["swipl", "-s", str(test_file), "-g", "run_tests", "-t", "halt"],
