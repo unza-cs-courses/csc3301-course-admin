@@ -416,18 +416,12 @@ Thresholds:
 
 ### 7.4 Grade Report
 
-After grading, you'll receive a report like:
+After grading, you'll receive a report through the course LMS that includes:
+- Your final score and letter grade
+- Feedback on your submission
+- Any areas for improvement
 
-```
-Score Breakdown
----------------
-Visible Tests:  100.0 × 40% = 40.0
-Hidden Tests:    95.0 × 30% = 28.5
-Code Quality:    90.0 × 20% = 18.0
-Participation:  100.0 × 10% = 10.0
-                            ------
-Final Score:                  96.5  (A+)
-```
+Grades are typically released within one week of the assignment deadline.
 
 ---
 
@@ -626,13 +620,7 @@ git push
 GitHub Actions shows: ✅ All checks passed
 
 ### Step 7: Final Grade
-```
-Final Score: 96.5 (A+)
-- Visible Tests: 40.0/40
-- Hidden Tests: 28.5/30
-- Code Quality: 18.0/20
-- Participation: 10.0/10
-```
+After the deadline, you'll receive your grade report via the course LMS with your final score and feedback.
 
 ---
 
